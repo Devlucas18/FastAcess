@@ -24,11 +24,8 @@ public class CriaAcesso {
     public String Criar(){
         String senhaString = new String(senha);
         Arrays.fill(senha, ' ');
-        
-        String command = "powershell.exe -File C:\\Scripts\\ScriptCriacaodeAcesso.ps1 -FullName \"" + nomeCompleto + "\" -FirstName \""
-        + primeiroNome + "\" -LastName \"" + ultimoNome + "\" -LogonName \"" + userNome + "\" -Password \"" + senhaString + "\"";
-        
-        
+        String command = "powershell.exe -File \"C:\\Scripts\\ScriptCriacaodeAcesso.ps1\" -LogonName \""+userNome+"\" -FullName \""+nomeCompleto+"\" "
+        +"-FirstName \""+primeiroNome+"\" -LastName \""+ultimoNome+"\" -Password \""+senhaString+"\"  ";
         System.out.println(command);  
         return PowerShell.executeSingleCommand(command).getCommandOutput();
 
