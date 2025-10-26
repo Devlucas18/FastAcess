@@ -16,7 +16,7 @@ public class Validacao {
         this.senha = senha;
         
     }
-    public String validarpassword(){
+    public boolean validarpassword(){
        //Quais restrições nosso userNome tem?;
        //Quais restrições nossa senha tem?; 8 caracteres, Carecter Especial, Letra Maiuscula, nome e sobrenome não são permitidos
         String senhaString = new String(senha);
@@ -27,14 +27,7 @@ public class Validacao {
         Matcher hasDigit = digit.matcher(senhaString);
         Matcher hasSpecial = special.matcher(senhaString);
         
-        if (hasLetter.find()&& hasSpecial.find() && hasDigit.find()){
-            return "Senha possível";
-            
-        } else{
-            return "Senha invalida, a senha deve conter pelo menos uma letra maiuscula"
-            + ", deve conter mais de 8 digitos, não pode conter o nome do usuário,"
-            + "deve conter pelo menos um caracter especial e deve conter pelo menos um número ";
-        }
+        return hasLetter.find()&& hasSpecial.find() && hasDigit.find();
 
     }
 }

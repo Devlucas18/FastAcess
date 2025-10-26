@@ -4,6 +4,7 @@
  */
 package br.com.visao;
 import br.com.controle.CriaAcesso;
+import br.com.controle.Validacao;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 
@@ -172,15 +173,26 @@ public class tela extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
+        Component frame = null;
         String nomeCompleto = fullName.getText();
         String primeiroNome = firstName.getText();
         String ultimoNome = lastName.getText();
         String userNome = userName.getText();
         char[] senha = password.getPassword();
+        //verifica se usuário já existe;
+        //verifica se a senha já é possível;
+        String mSenha;
+        Validacao validaSenha = new Validacao(senha);
+      
+        if (validaSenha.validarpassword() != true){
+            mSenha = "Senha não disponível ou não cumpre os requisistos mínimos";
+            JOptionPane.showMessageDialog(frame, mSenha);
+            System.exit(0);
+        }
+                //
         CriaAcesso acess = new CriaAcesso(nomeCompleto, primeiroNome, ultimoNome, userNome, senha);
-        String retorno = acess.Criar();
-        Component frame = null;
-        JOptionPane.showMessageDialog(frame, retorno);
+        String retorno1 = acess.Criar();
+        JOptionPane.showMessageDialog(frame, retorno1);
         
         
         
